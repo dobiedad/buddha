@@ -59,7 +59,7 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>0.36666667461395264</real>
+									<real>0.0</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -77,7 +77,7 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>1.1333333253860474</real>
+									<real>0.20000000298023224</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -95,7 +95,7 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>1.9666666984558105</real>
+									<real>0.46666666865348816</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -113,13 +113,85 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>2.4666666984558105</real>
+									<real>0.73333334922790527</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
 									<array>
 										<real>-90.278099060058594</real>
 										<real>60</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>position</string>
+									<key>time</key>
+									<real>1</real>
+									<key>type</key>
+									<integer>3</integer>
+									<key>value</key>
+									<array>
+										<real>-90.278099060058594</real>
+										<real>-71.099998474121094</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>position</string>
+									<key>time</key>
+									<real>1.2999999523162842</real>
+									<key>type</key>
+									<integer>3</integer>
+									<key>value</key>
+									<array>
+										<real>-90.278099060058594</real>
+										<real>-81.099998474121094</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>position</string>
+									<key>time</key>
+									<real>1.6000000238418579</real>
+									<key>type</key>
+									<integer>3</integer>
+									<key>value</key>
+									<array>
+										<real>-90.278099060058594</real>
+										<real>-121.09999847412109</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>position</string>
+									<key>time</key>
+									<real>1.9333332777023315</real>
+									<key>type</key>
+									<integer>3</integer>
+									<key>value</key>
+									<array>
+										<real>-90.278099060058594</real>
+										<real>-71.099998474121094</real>
 									</array>
 								</dict>
 							</array>
@@ -165,7 +237,7 @@
 						<key>value</key>
 						<array>
 							<real>-90.278099060058594</real>
-							<real>60</real>
+							<real>-76.099998474121094</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -189,8 +261,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>1.5</real>
+							<real>1.5</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -392,13 +464,13 @@
 			<key>chainedSequenceId</key>
 			<integer>-1</integer>
 			<key>length</key>
-			<real>3</real>
+			<real>2</real>
 			<key>name</key>
 			<string>Default Timeline</string>
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>2.4666666984558105</real>
+			<real>0.10000000149011612</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
