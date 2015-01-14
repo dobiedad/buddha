@@ -79,9 +79,9 @@ static const CGFloat distanceBetweenFlies = 160.f;
     
         CCSprite *fly = [CCSprite spriteWithImageNamed:@"laddin.png"];
     
-        int x = 10;
+        int x = -100;
     
-        int y = 1 + (arc4random() % 200); //random number between 100 and 300
+        int y = 100 + (arc4random() % 200); //random number between 100 and 300
     
         fly.position = ccp(x,y);
     
@@ -93,7 +93,11 @@ static const CGFloat distanceBetweenFlies = 160.f;
     
         float duration = 3.0;
     
-        id moveRight = [CCActionMoveBy actionWithDuration:duration position:ccp(50,0)];
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenWidth = screenRect.size.width;
+        CGFloat screenHeight = screenRect.size.height;
+    
+        id moveRight = [CCActionMoveBy actionWithDuration:duration position:ccp(screenWidth+300,0)];
     
         [fly runAction:moveRight];
     
@@ -103,6 +107,7 @@ static const CGFloat distanceBetweenFlies = 160.f;
     
         CCActionCallBlock *removeFly = [CCActionCallBlock actionWithBlock:^{
             [self removeChild:fly cleanup:TRUE];
+            [self spawnRandomSprite:1];
         }];
     
         id seq = [CCActionSequence actions:delay, removeFly, nil];
