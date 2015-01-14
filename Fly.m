@@ -1,15 +1,14 @@
 //
-//  Hero.m
+//  Fly.m
 //  budha
 //
-//  Created by Leo on 12/01/2015.
+//  Created by Leo on 14/01/2015.
 //  Copyright (c) 2015 Apportable. All rights reserved.
 //
 
-#import "Hero.h"
+#import "Fly.h"
 
-@implementation Hero{
-}
+@implementation Fly
 
 - (id)init
 {
@@ -23,12 +22,8 @@
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    CCLOG(@"Buddha touched");
+    CCLOG(@"Fly touched");
 }
-
-
-
-
 
 
 @end

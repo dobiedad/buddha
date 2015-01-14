@@ -52,7 +52,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string></string>
+				<string>Fly</string>
 				<key>displayName</key>
 				<string>laddin</string>
 				<key>memberVarAssignmentName</key>
@@ -216,8 +216,6 @@
 						<array/>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 				<key>seqExpanded</key>
 				<true/>
 			</dict>

@@ -1,36 +1,23 @@
 #import "MainScene.h"
 #import "Hero.h"
+#import "Fly.h"
 
 @implementation MainScene {
     Hero *_hero;
-    CCSprite *_fly;
     CCPhysicsNode *_physicsNode;
     CCNode *_background1;
     CCNode *_background2;
     NSMutableArray *_flies;
-    
-
 }
 
 - (void)didLoadFromCCB {
     _physicsNode.collisionDelegate = self;
-    _hero.physicsBody.collisionType = @"hero";
-    _fly.physicsBody.collisionType = @"fly";
-//    [self spawnNewFly];
-//    [self spawnNewFly];
-//    [self spawnNewFly];
     [self spawnRandomSprite:1];
-
-
 }
 
 - (void)update:(CCTime)delta {
     //hero.position = ccp(hero.position.x + delta * scrollSpeed, hero.position.y);
     //_physicsNode.position = ccp(_physicsNode.position.x, _physicsNode.position.y  - (scrollSpeed *delta));
-    
-    
-    
-    
 }
 
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)collidingHero fly:(CCSprite *)fly {
@@ -44,7 +31,7 @@
 
         int numSprite = arc4random() % 1; //generates random number up to 4... or is it 0-3, i forget..
     
-        CCSprite *fly =  (CCSprite *)[CCBReader load:@"fly"];
+        Fly *fly =  (Fly *)[CCBReader load:@"fly"];
     
         int x = -100;
     
