@@ -1,9 +1,6 @@
 #import "MainScene.h"
 #import "Hero.h"
 
-static const CGFloat scrollSpeed = 80.f;
-static const CGFloat firstFlyPosition = 280.f;
-static const CGFloat distanceBetweenFlies = 160.f;
 @implementation MainScene {
     Hero *_hero;
     CCSprite *_fly;
@@ -26,18 +23,6 @@ static const CGFloat distanceBetweenFlies = 160.f;
 
 
 }
-//- (void)spawnNewFly {
-//    CCNode *previousFly = [_flies lastObject];
-//    CGFloat previousFlyXPosition = previousFly.position.x;
-//    if (!previousFly) {
-//        // this is the first obstacle
-//        previousFlyXPosition = firstFlyPosition;
-//    }
-//    CCNode *fly = [CCBReader load:@"fly"];
-//    fly.position = ccp(previousFlyXPosition + distanceBetweenFlies, 0);
-//    [_physicsNode addChild:fly];
-//    [_flies addObject:fly];
-//}
 
 - (void)update:(CCTime)delta {
     //hero.position = ccp(hero.position.x + delta * scrollSpeed, hero.position.y);
@@ -47,26 +32,8 @@ static const CGFloat distanceBetweenFlies = 160.f;
     
     
 }
--(void)loopFlies{
-    NSMutableArray *offScreenFlies = nil;
-    for (CCNode *fly in _flies) {
-        CGPoint flyWorldPosition = [_physicsNode convertToWorldSpace:fly.position];
-        CGPoint flyScreenPosition = [self convertToNodeSpace:flyWorldPosition];
-        if (flyScreenPosition.x < -fly.contentSize.width) {
-            if (!offScreenFlies) {
-                offScreenFlies = [NSMutableArray array];
-            }
-            [offScreenFlies addObject:fly];
-        }
-    }
-    for (CCNode *flyToRemove in offScreenFlies) {
-        [flyToRemove removeFromParent];
-        [_flies removeObject:flyToRemove];
-        // for each removed obstacle, add a new one
-//        [self spawnNewFly];
-    }
-}
--(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)collidingHero fly:(CCNode *)fly {
+
+-(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)collidingHero fly:(CCSprite *)fly {
     NSLog(@"Game Over");
     return TRUE;
 }
@@ -77,7 +44,7 @@ static const CGFloat distanceBetweenFlies = 160.f;
 
         int numSprite = arc4random() % 1; //generates random number up to 4... or is it 0-3, i forget..
     
-        CCSprite *fly = [CCSprite spriteWithImageNamed:@"laddin.png"];
+        CCSprite *fly =  (CCSprite *)[CCBReader load:@"fly"];
     
         int x = -100;
     
@@ -85,7 +52,7 @@ static const CGFloat distanceBetweenFlies = 160.f;
     
         fly.position = ccp(x,y);
     
-        [self addChild:fly];
+        [_physicsNode addChild:fly];
     
     
     
@@ -106,7 +73,7 @@ static const CGFloat distanceBetweenFlies = 160.f;
         id delay = [CCActionDelay actionWithDuration:duration];
     
         CCActionCallBlock *removeFly = [CCActionCallBlock actionWithBlock:^{
-            [self removeChild:fly cleanup:TRUE];
+            [_physicsNode removeChild:fly cleanup:TRUE];
             [self spawnRandomSprite:1];
         }];
     
