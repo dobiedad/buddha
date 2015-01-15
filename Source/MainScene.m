@@ -1,6 +1,7 @@
 #import "MainScene.h"
 #import "Hero.h"
 #import "Fly.h"
+#import "CCActionInterval.h"
 
 @implementation MainScene {
     Hero *_hero;
@@ -8,6 +9,8 @@
     CCNode *_background1;
     CCNode *_background2;
     CCNode *_gameOverMenu;
+    CCNode *_heart;
+
     CCSprite *_healthBar;
     CCButton *_restartButton;
     NSMutableArray *_flies;
@@ -30,9 +33,12 @@
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)collidingHero fly:(CCSprite *)fly {
     NSLog(@"Game Over");
     _healthBar.scaleX = _healthBar.scaleX *.95;
+    int delayTime = 0.1f;
+
+    CCAction *action = [CCActionSequence actions:
+                        [CCActionScaleTo actionWithDuration:0.1F scale:0.5],[CCActionScaleTo actionWithDuration:0.1F scale:0.6],[CCActionScaleTo actionWithDuration:0.1F scale:0.6],nil];
     
-  
-    
+    [_heart runAction: action];
     return TRUE;
 }
 -(void)restartButtonClicked {
