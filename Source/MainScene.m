@@ -62,8 +62,9 @@
 {
 
         int numSprite = arc4random() % 1; //generates random number up to 4... or is it 0-3, i forget..
+        NSString *flyFile =[NSString stringWithFormat:@"fly%d", numSprite];
     
-        Fly *fly =  (Fly *)[CCBReader load:@"fly"];
+        Fly *fly =  (Fly *)[CCBReader load:flyFile];
     
         int x = -100;
     
