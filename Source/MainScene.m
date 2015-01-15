@@ -46,7 +46,7 @@
     NSLog(@"buddha & fly collided");
     float Health =_healthBar.scaleX;
     
-    _healthBar.scaleX = Health - 0.20;
+    _healthBar.scaleX = Health - 0.05;
     [self scaleHeartAnimation];
 
     if (_healthBar.scaleX <= 0) {
@@ -98,7 +98,7 @@
             [self spawnRandomSprite:1];
             [self spawnRandomSprite:1];
             [self spawnRandomSprite:1];
-
+            
         }];
     
         id seq = [CCActionSequence actions:delay, removeFly, nil];
