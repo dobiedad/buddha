@@ -66,6 +66,7 @@
 		927F61B9196C771E000F43EF /* iPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F590E188484E7003F4D28 /* iPhone@2x.png */; };
 		927F61BA196C771E000F43EF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B737896D180762440076A88C /* Default.png */; };
 		927F61BB196C771E000F43EF /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
+		B30B9B081A6876B300FAF425 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B30B9B071A6876B300FAF425 /* GameOverScene.m */; };
 		B3170CFF1A63FBDA0008C96E /* Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = B3170CFE1A63FBDA0008C96E /* Hero.m */; };
 		B3EEDF781A66CEF70036269D /* Fly.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EEDF771A66CEF70036269D /* Fly.m */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
@@ -196,6 +197,8 @@
 		7AFCD5DD19E9BDC200BCCCDA /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Source/Bridging-Header.h"; sourceTree = "<group>"; };
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		927F61BF196C771E000F43EF /* budha Android.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "budha Android.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B30B9B061A6876B300FAF425 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		B30B9B071A6876B300FAF425 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		B3170CFD1A63FBDA0008C96E /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
 		B3170CFE1A63FBDA0008C96E /* Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hero.m; sourceTree = "<group>"; };
 		B3EEDF761A66CEF70036269D /* Fly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fly.h; sourceTree = "<group>"; };
@@ -471,6 +474,8 @@
 				B3170CFE1A63FBDA0008C96E /* Hero.m */,
 				B3EEDF761A66CEF70036269D /* Fly.h */,
 				B3EEDF771A66CEF70036269D /* Fly.m */,
+				B30B9B061A6876B300FAF425 /* GameOverScene.h */,
+				B30B9B071A6876B300FAF425 /* GameOverScene.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -875,6 +880,7 @@
 				7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */,
 				B3EEDF781A66CEF70036269D /* Fly.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
+				B30B9B081A6876B300FAF425 /* GameOverScene.m in Sources */,
 				B3170CFF1A63FBDA0008C96E /* Hero.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

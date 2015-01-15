@@ -8,11 +8,12 @@
     CCPhysicsNode *_physicsNode;
     CCNode *_background1;
     CCNode *_background2;
-    CCNode *_gameOverMenu;
     CCNode *_heart;
 
     CCSprite *_healthBar;
-    CCButton *_restartButton;
+    CCSprite *_fish0;
+    CCSprite *_fish1;
+
     NSMutableArray *_flies;
 }
 
@@ -20,7 +21,6 @@
 
 - (void)didLoadFromCCB {
     _physicsNode.collisionDelegate = self;
-    _gameOverMenu.visible=false;
     [self spawnRandomSprite:1];
 
 }
@@ -36,26 +36,26 @@
     
     [_heart runAction: action];
 }
+-(void)gameOver {
+    CCScene *scene = [CCBReader loadAsScene:@"GameOverScene"];
+    [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionDown duration:0.15f]];
+}
 
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)collidingHero fly:(CCSprite *)fly {
     NSLog(@"buddha & fly collided");
     float Health =_healthBar.scaleX;
     
-    _healthBar.scaleX = Health - 0.05;
+    _healthBar.scaleX = Health - 0.20;
     [self scaleHeartAnimation];
 
-    if (_healthBar.scaleX < 0) {
+    if (_healthBar.scaleX <= 0) {
         _heart.visible=false;
-        _gameOverMenu.visible=true;
+        [self gameOver];
 
     }
     return TRUE;
 }
--(void)restartButtonClicked {
-    CCScene *scene = [CCBReader loadAsScene:@"MainScene"];
-    [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.25f]];
-    
-}
+
 
 -(void)spawnRandomSprite:(CCTime)dt
 
