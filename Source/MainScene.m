@@ -30,15 +30,17 @@
     //_physicsNode.position = ccp(_physicsNode.position.x, _physicsNode.position.y  - (scrollSpeed *delta));
 }
 
--(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)collidingHero fly:(CCSprite *)fly {
-    NSLog(@"Game Over");
-    _healthBar.scaleX = _healthBar.scaleX *.95;
-    int delayTime = 0.1f;
-
+- (void)scaleHeartAnimation {
     CCAction *action = [CCActionSequence actions:
                         [CCActionScaleTo actionWithDuration:0.1F scale:0.5],[CCActionScaleTo actionWithDuration:0.1F scale:0.6],[CCActionScaleTo actionWithDuration:0.1F scale:0.6],nil];
     
     [_heart runAction: action];
+}
+
+-(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)collidingHero fly:(CCSprite *)fly {
+    NSLog(@"Game Over");
+    _healthBar.scaleX = _healthBar.scaleX *.95;
+    [self scaleHeartAnimation];
     return TRUE;
 }
 -(void)restartButtonClicked {
