@@ -38,9 +38,17 @@
 }
 
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)collidingHero fly:(CCSprite *)fly {
-    NSLog(@"Game Over");
-    _healthBar.scaleX = _healthBar.scaleX *.95;
+    NSLog(@"buddha & fly collided");
+    float Health =_healthBar.scaleX;
+    
+    _healthBar.scaleX = Health - 0.05;
     [self scaleHeartAnimation];
+
+    if (_healthBar.scaleX < 0) {
+        _heart.visible=false;
+        _gameOverMenu.visible=true;
+
+    }
     return TRUE;
 }
 -(void)restartButtonClicked {
