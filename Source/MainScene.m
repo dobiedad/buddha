@@ -8,13 +8,18 @@
     CCNode *_background1;
     CCNode *_background2;
     CCNode *_gameOverMenu;
+    CCSprite *_healthBar;
+    CCButton *_restartButton;
     NSMutableArray *_flies;
 }
+
+
 
 - (void)didLoadFromCCB {
     _physicsNode.collisionDelegate = self;
     _gameOverMenu.visible=false;
     [self spawnRandomSprite:1];
+
 }
 
 - (void)update:(CCTime)delta {
@@ -24,9 +29,10 @@
 
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)collidingHero fly:(CCSprite *)fly {
     NSLog(@"Game Over");
-    _gameOverMenu.visible=true;
+    _healthBar.scale = _healthBar.scaleX *.95;
     
-
+  
+    
     return TRUE;
 }
 -(void)restartButtonClicked {
