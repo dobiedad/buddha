@@ -7,11 +7,13 @@
     CCPhysicsNode *_physicsNode;
     CCNode *_background1;
     CCNode *_background2;
+    CCNode *_gameOverMenu;
     NSMutableArray *_flies;
 }
 
 - (void)didLoadFromCCB {
     _physicsNode.collisionDelegate = self;
+    _gameOverMenu.visible=false;
     [self spawnRandomSprite:1];
 }
 
@@ -22,7 +24,15 @@
 
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)collidingHero fly:(CCSprite *)fly {
     NSLog(@"Game Over");
+    _gameOverMenu.visible=true;
+    
+
     return TRUE;
+}
+-(void)restartButtonClicked {
+    CCScene *scene = [CCBReader loadAsScene:@"MainScene"];
+    [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.25f]];
+    
 }
 
 -(void)spawnRandomSprite:(CCTime)dt
