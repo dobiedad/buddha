@@ -20,8 +20,7 @@
 - (void)didLoadFromCCB {
     _physicsNode.collisionDelegate = self;
     [self spawnRandomSprite:1];
-    [self spawnRandomSprite:1];
-    [self spawnRandomSprite:1];
+
 
 
 }
@@ -46,7 +45,7 @@
     NSLog(@"buddha & fly collided");
     float Health =_healthBar.scaleX;
     
-    _healthBar.scaleX = Health - 0.05;
+    _healthBar.scaleX = Health - 0.02;
     [self scaleHeartAnimation];
 
     if (_healthBar.scaleX <= 0) {
@@ -95,7 +94,6 @@
     
         CCActionCallBlock *removeFly = [CCActionCallBlock actionWithBlock:^{
             [_physicsNode removeChild:fly cleanup:TRUE];
-            [self spawnRandomSprite:1];
             [self spawnRandomSprite:1];
             [self spawnRandomSprite:1];
             
