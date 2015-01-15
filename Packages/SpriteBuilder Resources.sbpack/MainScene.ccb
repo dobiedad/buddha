@@ -78,8 +78,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>-1</real>
-							<real>38.0736083984375</real>
+							<real>-11</real>
+							<real>0.0736083984375</real>
 							<integer>1</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -104,7 +104,7 @@
 						<key>value</key>
 						<array>
 							<real>1.1436116695404053</real>
-							<real>1.3576773405075073</real>
+							<real>1.2000000476837158</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -172,6 +172,8 @@
 						<array/>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 				<key>seqExpanded</key>
 				<true/>
 			</dict>
@@ -802,8 +804,6 @@
 								<string>budha.ccb</string>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 						<key>seqExpanded</key>
 						<true/>
 					</dict>
