@@ -29,7 +29,7 @@
 
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)collidingHero fly:(CCSprite *)fly {
     NSLog(@"Game Over");
-    _healthBar.scale = _healthBar.scaleX *.95;
+    _healthBar.scaleX = _healthBar.scaleX *.95;
     
   
     
