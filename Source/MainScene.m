@@ -11,8 +11,6 @@
     CCNode *_heart;
 
     CCSprite *_healthBar;
-    CCSprite *_fish0;
-    CCSprite *_fish1;
 
     NSMutableArray *_flies;
 }
@@ -38,7 +36,7 @@
 }
 -(void)gameOver {
     CCScene *scene = [CCBReader loadAsScene:@"GameOverScene"];
-    [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionDown duration:0.15f]];
+    [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionDown duration:0.35f]];
 }
 
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)collidingHero fly:(CCSprite *)fly {
