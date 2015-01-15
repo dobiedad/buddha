@@ -20,6 +20,9 @@
 - (void)didLoadFromCCB {
     _physicsNode.collisionDelegate = self;
     [self spawnRandomSprite:1];
+    [self spawnRandomSprite:1];
+    [self spawnRandomSprite:1];
+
 
 }
 
@@ -93,6 +96,9 @@
         CCActionCallBlock *removeFly = [CCActionCallBlock actionWithBlock:^{
             [_physicsNode removeChild:fly cleanup:TRUE];
             [self spawnRandomSprite:1];
+            [self spawnRandomSprite:1];
+            [self spawnRandomSprite:1];
+
         }];
     
         id seq = [CCActionSequence actions:delay, removeFly, nil];
