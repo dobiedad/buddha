@@ -32,7 +32,7 @@
     NSLog(@"%d -> %d", startX, endX);
     
     int endY = 100 + middleX*plusMinusRandom;
-    int startY = 110;
+    int startY = 510;
 
     self.position = ccp(startX, startY);
     
@@ -80,6 +80,8 @@
     CCLOG(@"Fly touched");
     [self addParticles];
     [self.spriteDiedDelegate spriteDied: self];
+//    [self.spriteDiedDelegate spriteDissapeared: self];
+
 }
 
 @end

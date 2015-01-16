@@ -79,9 +79,7 @@
     if (_points > _highScore) {
         _highScore = _points;
     }
-    // first save your state
     [self saveState];
-    // than reload your state
     [self loadSavedState];
 }
 
