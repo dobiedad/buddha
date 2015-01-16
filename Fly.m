@@ -49,7 +49,7 @@
     id delay = [CCActionDelay actionWithDuration:duration];
     
     CCActionCallBlock *removeFly = [CCActionCallBlock actionWithBlock:^{
-        [self.spriteDiedDelegate spriteDied: self];
+        [self.spriteDiedDelegate spriteDissapeared: self];
     }];
     
     id seq = [CCActionSequence actions:delay, removeFly, nil];
@@ -80,7 +80,6 @@
     CCLOG(@"Fly touched");
     [self addParticles];
     [self.spriteDiedDelegate spriteDied: self];
-//    [self.spriteDiedDelegate spriteDissapeared: self];
 
 }
 

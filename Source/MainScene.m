@@ -15,6 +15,8 @@
     int _points;
     CCLabelTTF *_scoreLabel;
     int _highScore;
+    CCLabelTTF *_highScoreLabel;
+
 
 }
 
@@ -72,7 +74,7 @@
 
 - (void)scoreAndHighScore
 {
-    _points+=1;
+    _points += 1;
     _scoreLabel.string = [NSString stringWithFormat:@"%ld", (long) _points];
     NSLog(@"%ld",_highScore);
 
@@ -83,11 +85,20 @@
     [self loadSavedState];
 }
 
--(void)spriteDied: (CCSprite *)sprite
+-(void)spriteDied:(CCSprite *)sprite
 {
     [_physicsNode removeChild:sprite cleanup:NO];
+    [self createSomeNewFlies];
     [self scoreAndHighScore];
-    
+}
+
+-(void)spriteDissapeared:(CCSprite *)sprite
+{
+    [_physicsNode removeChild:sprite cleanup:NO];
+    [self createSomeNewFlies];
+}
+
+-(void)createSomeNewFlies {
     int newFlyCount = (arc4random() % 2) + 1;
     for (int i = 0; i < newFlyCount; i++) {
         [self spawnFly];
