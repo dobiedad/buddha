@@ -10,31 +10,39 @@
     self.userInteractionEnabled = TRUE;
     self.physicsBody.collisionType=@"fly";
     [self randomFlyPosition];
-    
 }
 
-
 - (void)randomFlyPosition {
-    int x = -10 + (arc4random() % 100);
-    
-    int y = 100 + (arc4random() % 500); //random number between 100 and 300
-    int random = 1 + (arc4random() % 500); //random number between 100 and 300
-
-    
-    
-    self.position = ccp(x,y);
-    
-    //move it to the right 550 points
-    
-    float duration = 3.0;
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
-    // CGFloat screenHeight = screenRect.size.height;
+    CGFloat middleX = (screenWidth / 2);
     
-    id moveRight = [CCActionMoveBy actionWithDuration:duration position:ccp(screenWidth+random,-random)];
+    int plusMinusRandom = [self randomNumberBetweenZeroAnd: 1] == 0 ? 1 : -1;
     
-    [self runAction:moveRight];
+    NSLog(@"plusMinusRandom = %d", plusMinusRandom);
+    
+    CGFloat xDistanceFromMiddle = (middleX + 100) * plusMinusRandom;
+    
+    int startX = middleX + xDistanceFromMiddle;
+    int endX = middleX - xDistanceFromMiddle;
+    
+    NSLog(@"%d -> %d", startX, endX);
+    
+    int endY = 100;
+    int startY = 110;
+
+    self.position = ccp(startX, startY);
+    
+    if (endX < startX) {
+        self.scaleX *= -1.f;
+    }
+    
+    float duration = 3.0 + ([self randomNumberBetweenZeroAnd: 2] - 1);
+    
+    id move = [CCActionMoveTo actionWithDuration:duration position:ccp(endX, endY)];
+    
+    [self runAction:move];
     
     id delay = [CCActionDelay actionWithDuration:duration];
     
@@ -47,7 +55,9 @@
     [self runAction :seq];
 }
 
-
+- (NSInteger)randomNumberBetweenZeroAnd: (u_int32_t) n {
+    return arc4random_uniform(n + 1);
+}
 
 - (void)addParticles
 {
