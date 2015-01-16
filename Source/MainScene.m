@@ -58,7 +58,7 @@
 
 -(void)spawnFly
 {
-    int numSprite = arc4random() % 3;
+    int numSprite = arc4random() % 1;
     NSString *flyFile =[NSString stringWithFormat:@"fly%d", numSprite];
     Fly *fly =  (Fly *)[CCBReader load:flyFile];
     fly.spriteDiedDelegate = self;
@@ -69,7 +69,7 @@
 {
     [_physicsNode removeChild:sprite cleanup:NO];
     
-    int newFlyCount = (arc4random() % 5) + 1;
+    int newFlyCount = (arc4random() % 2) + 1;
     for (int i = 0; i < newFlyCount; i++) {
         [self spawnFly];
     }

@@ -9,9 +9,18 @@
 - (void)didLoadFromCCB {
     self.userInteractionEnabled = TRUE;
     
-    int x = -100;
+    [self randomFlyPosition];
     
-    int y = 100 + (arc4random() % 200); //random number between 100 and 300
+}
+
+
+- (void)randomFlyPosition {
+    int x = -100 + (arc4random() % 500);
+    
+    int y = 100 + (arc4random() % 500); //random number between 100 and 300
+    int random = 1 + (arc4random() % 500); //random number between 100 and 300
+
+    
     
     self.position = ccp(x,y);
     
@@ -23,7 +32,7 @@
     CGFloat screenWidth = screenRect.size.width;
     // CGFloat screenHeight = screenRect.size.height;
     
-    id moveRight = [CCActionMoveBy actionWithDuration:duration position:ccp(screenWidth+300,0)];
+    id moveRight = [CCActionMoveBy actionWithDuration:duration position:ccp(screenWidth+random,-random)];
     
     [self runAction:moveRight];
     
@@ -36,8 +45,9 @@
     id seq = [CCActionSequence actions:delay, removeFly, nil];
     
     [self runAction :seq];
-
 }
+
+
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
