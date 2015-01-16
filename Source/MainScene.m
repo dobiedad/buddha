@@ -10,7 +10,7 @@
     CCNode *_background2;
     CCNode *_heart;
 
-    CCSprite *_healthBar;
+    CCNode *_healthBar;
 
     NSMutableArray *_flies;
 }
@@ -32,7 +32,7 @@
 
 - (void)scaleHeartAnimation {
     CCAction *action = [CCActionSequence actions:
-                        [CCActionScaleTo actionWithDuration:0.1F scale:0.5],[CCActionScaleTo actionWithDuration:0.1F scale:0.6],[CCActionScaleTo actionWithDuration:0.1F scale:0.6],nil];
+                        [CCActionScaleTo actionWithDuration:0.1F scale:0.6],[CCActionScaleTo actionWithDuration:0.2F scale:0.8],[CCActionScaleTo actionWithDuration:0.1F scale:0.6],[CCActionScaleTo actionWithDuration:0.2F scale:0.8],[CCActionScaleTo actionWithDuration:0.1F scale:0.6],nil];
     
     [_heart runAction: action];
 }
@@ -43,12 +43,12 @@
 
 -(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)collidingHero fly:(CCSprite *)fly {
     NSLog(@"buddha & fly collided");
-    float Health =_healthBar.scaleX;
+    float Health =_healthBar.scaleY;
     
-    _healthBar.scaleX = Health - 0.02;
+    _healthBar.scaleY = Health - 0.02;
     [self scaleHeartAnimation];
 
-    if (_healthBar.scaleX <= 0) {
+    if (_healthBar.scaleY <= 0) {
         _heart.visible=false;
         [self gameOver];
 
