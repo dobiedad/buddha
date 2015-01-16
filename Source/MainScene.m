@@ -32,8 +32,8 @@
 
 - (void)scaleHeartAnimation {
     CCAction *action = [CCActionSequence actions:
-                        [CCActionScaleTo actionWithDuration:0.1F scale:0.6],[CCActionScaleTo actionWithDuration:0.2F scale:0.8],[CCActionScaleTo actionWithDuration:0.1F scale:0.6],[CCActionScaleTo actionWithDuration:0.2F scale:0.8],[CCActionScaleTo actionWithDuration:0.1F scale:0.6],nil];
-    
+                        [CCActionScaleTo actionWithDuration:0.1F scale:0.55],[CCActionScaleTo actionWithDuration:0.2F scale:0.4],nil];
+
     [_heart runAction: action];
 }
 -(void)gameOver {
