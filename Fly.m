@@ -25,11 +25,7 @@
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     CCLOG(@"Fly touched");
-
-//    [self removeFromParentAndCleanup:NO];
-
-    
+    [self removeFromParentAndCleanup:NO];
 }
-
 
 @end

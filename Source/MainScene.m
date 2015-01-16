@@ -58,51 +58,49 @@
 
 
 -(void)spawnRandomSprite:(CCTime)dt
-
 {
+    int numSprite = arc4random() % 3; //generates random number up to 4... or is it 0-3, i forget..
+    NSString *flyFile =[NSString stringWithFormat:@"fly%d", numSprite];
 
-        int numSprite = arc4random() % 3; //generates random number up to 4... or is it 0-3, i forget..
-        NSString *flyFile =[NSString stringWithFormat:@"fly%d", numSprite];
+    Fly *fly =  (Fly *)[CCBReader load:flyFile];
+
+    int x = -100;
+
+    int y = 100 + (arc4random() % 200); //random number between 100 and 300
+
+    fly.position = ccp(x,y);
+
+    [_physicsNode addChild:fly];
+
+    //move it to the right 550 points
+
+    float duration = 3.0;
+
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+
+    id moveRight = [CCActionMoveBy actionWithDuration:duration position:ccp(screenWidth+300,0)];
+
+    [fly runAction:moveRight];
+
+    id delay = [CCActionDelay actionWithDuration:duration];
     
-        Fly *fly =  (Fly *)[CCBReader load:flyFile];
-    
-        int x = -100;
-    
-        int y = 100 + (arc4random() % 200); //random number between 100 and 300
-    
-        fly.position = ccp(x,y);
-    
-        [_physicsNode addChild:fly];
-    
-    
-    
-        //move it to the right 550 points
-    
-        float duration = 3.0;
-    
-        CGRect screenRect = [[UIScreen mainScreen] bounds];
-        CGFloat screenWidth = screenRect.size.width;
-        CGFloat screenHeight = screenRect.size.height;
-    
-        id moveRight = [CCActionMoveBy actionWithDuration:duration position:ccp(screenWidth+300,0)];
-    
-        [fly runAction:moveRight];
-    
-    
-    
-        id delay = [CCActionDelay actionWithDuration:duration];
-    
-        CCActionCallBlock *removeFly = [CCActionCallBlock actionWithBlock:^{
+    CCActionCallBlock *removeFly = [CCActionCallBlock actionWithBlock:^{
+        @try {
             [_physicsNode removeChild:fly cleanup:TRUE];
-            [self spawnRandomSprite:1];
-            [self spawnRandomSprite:1];
-            
-        }];
-    
-        id seq = [CCActionSequence actions:delay, removeFly, nil];
-    
-        [self runAction :seq];
-    
+        }
+        @catch (NSException *exception) {
+        };
+
+        [self spawnRandomSprite:1];
+        [self spawnRandomSprite:1];
+        
+    }];
+
+    id seq = [CCActionSequence actions:delay, removeFly, nil];
+
+    [self runAction :seq];
 }
 
 
