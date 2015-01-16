@@ -14,6 +14,8 @@
     NSMutableArray *_flies;
     int _points;
     CCLabelTTF *_scoreLabel;
+    int _highScore;
+
 }
 
 - (void)didLoadFromCCB {
@@ -68,17 +70,45 @@
     [_physicsNode addChild:fly];
 }
 
+- (void)scoreAndHighScore
+{
+    _points+=1;
+    _scoreLabel.string = [NSString stringWithFormat:@"%ld", (long) _points];
+    NSLog(@"%ld",_highScore);
+
+    if (_points > _highScore) {
+        _highScore = _points;
+    }
+    // first save your state
+    [self saveState];
+    // than reload your state
+    [self loadSavedState];
+}
+
 -(void)spriteDied: (CCSprite *)sprite
 {
     [_physicsNode removeChild:sprite cleanup:NO];
-    _points+=1;
-    _scoreLabel.string = [NSString stringWithFormat:@"%ld", (long) _points];
+    [self scoreAndHighScore];
     
     int newFlyCount = (arc4random() % 2) + 1;
     for (int i = 0; i < newFlyCount; i++) {
         [self spawnFly];
     }
 }
+
+- (void)saveState {
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setInteger:_highScore forKey:@"highScore"];
+    [prefs synchronize];
+}
+
+- (void)loadSavedState {
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    _highScore = [prefs integerForKey:@"highScore"];
+//    _highscoreLabel.string = [NSString stringWithFormat:@"High Score: %ld",(long)_highScore];
+}
+
+
 
 
 @end
