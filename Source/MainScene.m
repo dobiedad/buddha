@@ -12,6 +12,8 @@
     CCNode *_heart;
     CCNode *_healthBar;
     NSMutableArray *_flies;
+    int _points;
+    CCLabelTTF *_scoreLabel;
 }
 
 - (void)didLoadFromCCB {
@@ -23,6 +25,7 @@
     //hero.position = ccp(hero.position.x + delta * scrollSpeed, hero.position.y);
     //_physicsNode.position = ccp(_physicsNode.position.x, _physicsNode.position.y  - (scrollSpeed *delta));
 }
+
 
 - (void)scaleHeartAnimation {
     CCAction *action = [CCActionSequence actions:
@@ -68,6 +71,8 @@
 -(void)spriteDied: (CCSprite *)sprite
 {
     [_physicsNode removeChild:sprite cleanup:NO];
+    _points+=1;
+    _scoreLabel.string = [NSString stringWithFormat:@"%ld", (long) _points];
     
     int newFlyCount = (arc4random() % 2) + 1;
     for (int i = 0; i < newFlyCount; i++) {

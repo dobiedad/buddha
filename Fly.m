@@ -1,6 +1,7 @@
 #import "Fly.h"
 
 @implementation Fly{
+    
 }
 
 @synthesize spriteDiedDelegate;
@@ -10,6 +11,8 @@
     self.userInteractionEnabled = TRUE;
     self.physicsBody.collisionType=@"fly";
     [self randomFlyPosition];
+    
+    
 }
 
 - (void)randomFlyPosition {
@@ -17,7 +20,6 @@
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat middleX = (screenWidth / 2);
-    
     int plusMinusRandom = [self randomNumberBetweenZeroAnd: 1] == 0 ? 1 : -1;
     
     NSLog(@"plusMinusRandom = %d", plusMinusRandom);
@@ -29,7 +31,7 @@
     
     NSLog(@"%d -> %d", startX, endX);
     
-    int endY = 100;
+    int endY = 100 + middleX*plusMinusRandom;
     int startY = 110;
 
     self.position = ccp(startX, startY);
