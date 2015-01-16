@@ -5,6 +5,7 @@
 
 @implementation MainScene {
     Hero *_hero;
+    Fly *_fly;
     CCPhysicsNode *_physicsNode;
     CCNode *_background1;
     CCNode *_background2;
@@ -26,7 +27,6 @@
 - (void)scaleHeartAnimation {
     CCAction *action = [CCActionSequence actions:
                         [CCActionScaleTo actionWithDuration:0.1F scale:0.55],[CCActionScaleTo actionWithDuration:0.2F scale:0.4],nil];
-
     [_heart runAction: action];
 }
 -(void)gameOver {
@@ -39,10 +39,10 @@
     if (fly.hasCollidedWithBuddha == false) {
         NSLog(@"buddha & fly collided");
         
-        fly.hasCollidedWithBuddha = true;
         
         float Health =_healthBar.scaleY;
-        
+        fly.hasCollidedWithBuddha = true;
+
         _healthBar.scaleY = Health - 0.02;
         [self scaleHeartAnimation];
         

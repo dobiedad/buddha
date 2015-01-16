@@ -8,14 +8,14 @@
 
 - (void)didLoadFromCCB {
     self.userInteractionEnabled = TRUE;
-    
+    self.physicsBody.collisionType=@"fly";
     [self randomFlyPosition];
     
 }
 
 
 - (void)randomFlyPosition {
-    int x = -100 + (arc4random() % 500);
+    int x = -10 + (arc4random() % 100);
     
     int y = 100 + (arc4random() % 500); //random number between 100 and 300
     int random = 1 + (arc4random() % 500); //random number between 100 and 300
@@ -49,9 +49,24 @@
 
 
 
+- (void)addParticles
+{
+    CCParticleSystem *smoke = (CCParticleSystem *)[CCBReader load:@"smoke"];
+    smoke.position = self.position;
+    [self.parent addChild:smoke];
+    CCActionMoveBy *moveBy = [CCActionMoveBy actionWithDuration:0.8f position:ccp(-1,20)];
+    CCActionInterval *reverseMovement = [moveBy reverse];
+    CCActionSequence *shakeSequence = [CCActionSequence actionWithArray:@[moveBy, reverseMovement]];
+    CCActionEaseBounce *bounce = [CCActionEaseBounce actionWithAction:shakeSequence];
+    smoke.autoRemoveOnFinish = TRUE;
+
+    [self runAction:bounce];
+}
+
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     CCLOG(@"Fly touched");
+    [self addParticles];
     [self.spriteDiedDelegate spriteDied: self];
 }
 
