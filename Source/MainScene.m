@@ -9,20 +9,13 @@
     CCNode *_background1;
     CCNode *_background2;
     CCNode *_heart;
-
     CCNode *_healthBar;
-
     NSMutableArray *_flies;
 }
 
-
-
 - (void)didLoadFromCCB {
     _physicsNode.collisionDelegate = self;
-    [self spawnRandomSprite:1];
-
-
-
+    [self spawnFly];
 }
 
 - (void)update:(CCTime)delta {
@@ -41,69 +34,46 @@
     [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionDown duration:0.35f]];
 }
 
--(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)collidingHero fly:(CCSprite *)fly {
-    NSLog(@"buddha & fly collided");
-    float Health =_healthBar.scaleY;
+-(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair hero:(CCNode *)collidingHero fly:(Fly *)fly {
     
-    _healthBar.scaleY = Health - 0.02;
-    [self scaleHeartAnimation];
-
-    if (_healthBar.scaleY <= 0) {
-        _heart.visible=false;
-        [self gameOver];
-
+    if (fly.hasCollidedWithBuddha == false) {
+        NSLog(@"buddha & fly collided");
+        
+        fly.hasCollidedWithBuddha = true;
+        
+        float Health =_healthBar.scaleY;
+        
+        _healthBar.scaleY = Health - 0.02;
+        [self scaleHeartAnimation];
+        
+        if (_healthBar.scaleY <= 0) {
+            _heart.visible=false;
+            [self gameOver];
+        }
     }
+    
     return TRUE;
 }
 
 
--(void)spawnRandomSprite:(CCTime)dt
+-(void)spawnFly
 {
-    int numSprite = arc4random() % 3; //generates random number up to 4... or is it 0-3, i forget..
+    int numSprite = arc4random() % 3;
     NSString *flyFile =[NSString stringWithFormat:@"fly%d", numSprite];
-
     Fly *fly =  (Fly *)[CCBReader load:flyFile];
-
-    int x = -100;
-
-    int y = 100 + (arc4random() % 200); //random number between 100 and 300
-
-    fly.position = ccp(x,y);
-
+    fly.spriteDiedDelegate = self;
     [_physicsNode addChild:fly];
-
-    //move it to the right 550 points
-
-    float duration = 3.0;
-
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
-    CGFloat screenHeight = screenRect.size.height;
-
-    id moveRight = [CCActionMoveBy actionWithDuration:duration position:ccp(screenWidth+300,0)];
-
-    [fly runAction:moveRight];
-
-    id delay = [CCActionDelay actionWithDuration:duration];
-    
-    CCActionCallBlock *removeFly = [CCActionCallBlock actionWithBlock:^{
-        @try {
-            [_physicsNode removeChild:fly cleanup:TRUE];
-        }
-        @catch (NSException *exception) {
-        };
-
-        [self spawnRandomSprite:1];
-        [self spawnRandomSprite:1];
-        
-    }];
-
-    id seq = [CCActionSequence actions:delay, removeFly, nil];
-
-    [self runAction :seq];
 }
 
-
+-(void)spriteDied: (CCSprite *)sprite
+{
+    [_physicsNode removeChild:sprite cleanup:NO];
+    
+    int newFlyCount = (arc4random() % 5) + 1;
+    for (int i = 0; i < newFlyCount; i++) {
+        [self spawnFly];
+    }
+}
 
 
 @end

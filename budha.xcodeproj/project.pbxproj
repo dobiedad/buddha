@@ -197,6 +197,7 @@
 		7AFCD5DD19E9BDC200BCCCDA /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Source/Bridging-Header.h"; sourceTree = "<group>"; };
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		927F61BF196C771E000F43EF /* budha Android.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "budha Android.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B30737C11A69360500BADD8F /* SpriteDiedDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteDiedDelegate.h; sourceTree = "<group>"; };
 		B30B9B061A6876B300FAF425 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		B30B9B071A6876B300FAF425 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		B3170CFD1A63FBDA0008C96E /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
@@ -476,6 +477,7 @@
 				B3EEDF771A66CEF70036269D /* Fly.m */,
 				B30B9B061A6876B300FAF425 /* GameOverScene.h */,
 				B30B9B071A6876B300FAF425 /* GameOverScene.m */,
+				B30737C11A69360500BADD8F /* SpriteDiedDelegate.h */,
 			);
 			name = Source;
 			sourceTree = "<group>";
