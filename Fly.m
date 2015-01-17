@@ -31,8 +31,8 @@
     
     NSLog(@"%d -> %d", startX, endX);
     
-    int endY = 100 + middleX*plusMinusRandom;
-    int startY = 510;
+    int endY = 100 + ([self randomNumberBetweenZeroAnd: 900])*plusMinusRandom + ([self randomNumberBetweenZeroAnd: 100]);
+    int startY = 100 + ([self randomNumberBetweenZeroAnd: 600]);
 
     self.position = ccp(startX, startY);
     
