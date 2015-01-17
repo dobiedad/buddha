@@ -3,6 +3,8 @@
 #import "Fly.h"
 #import "CCActionInterval.h"
 
+static const int kScrollSpeed = 3;
+
 @implementation MainScene {
     Hero *_hero;
     Fly *_fly;
@@ -28,6 +30,25 @@
 - (void)update:(CCTime)delta {
     //hero.position = ccp(hero.position.x + delta * scrollSpeed, hero.position.y);
     //_physicsNode.position = ccp(_physicsNode.position.x, _physicsNode.position.y  - (scrollSpeed *delta));
+    
+    CGPoint bg1Pos = _background1.position;
+    CGPoint bg2Pos = _background2.position;
+    bg1Pos.y += kScrollSpeed;
+    bg2Pos.y -= kScrollSpeed;
+    
+    // move scrolling background back by one screen width to achieve "endless" scrolling
+    if (bg1Pos.y < -(_background1.contentSize.width))
+    {
+        bg1Pos.y += _background1.contentSize.width;
+        bg2Pos.y -= _background2.contentSize.width;
+    }
+    
+    // remove any inaccuracies by assigning only int values
+    // (prevents floating point rounding errors accumulating over time)
+    bg1Pos.y = (int)bg1Pos.y;
+    bg2Pos.y = (int)bg2Pos.y;
+    _background1.position = bg1Pos;
+    _background2.position = bg2Pos;
 }
 
 

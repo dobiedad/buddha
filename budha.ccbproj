@@ -82,7 +82,7 @@
 		</dict>
 		<key>Sprites</key>
 		<dict/>
-		<key>background.png</key>
+		<key>bglong.png</key>
 		<dict>
 			<key>scaleFrom</key>
 			<integer>4</integer>

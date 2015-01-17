@@ -66,6 +66,7 @@
 		927F61B9196C771E000F43EF /* iPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F590E188484E7003F4D28 /* iPhone@2x.png */; };
 		927F61BA196C771E000F43EF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B737896D180762440076A88C /* Default.png */; };
 		927F61BB196C771E000F43EF /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
+		B3057AE71A6A8D15004B93CC /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3057AE61A6A8D15004B93CC /* CoreMotion.framework */; };
 		B30B9B081A6876B300FAF425 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B30B9B071A6876B300FAF425 /* GameOverScene.m */; };
 		B3170CFF1A63FBDA0008C96E /* Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = B3170CFE1A63FBDA0008C96E /* Hero.m */; };
 		B3EEDF781A66CEF70036269D /* Fly.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EEDF771A66CEF70036269D /* Fly.m */; };
@@ -197,6 +198,7 @@
 		7AFCD5DD19E9BDC200BCCCDA /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Source/Bridging-Header.h"; sourceTree = "<group>"; };
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		927F61BF196C771E000F43EF /* budha Android.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "budha Android.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3057AE61A6A8D15004B93CC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B30737C11A69360500BADD8F /* SpriteDiedDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteDiedDelegate.h; sourceTree = "<group>"; };
 		B30B9B061A6876B300FAF425 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		B30B9B071A6876B300FAF425 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3057AE71A6A8D15004B93CC /* CoreMotion.framework in Frameworks */,
 				7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */,
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
 				B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */,
@@ -529,6 +532,7 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3057AE61A6A8D15004B93CC /* CoreMotion.framework */,
 				7A59493C19E37FB200F65F90 /* libz.dylib */,
 				7A59493A19E37F9300F65F90 /* OpenGL.framework */,
 				7A4036F419DE3FA8007B6E8F /* AppKit.framework */,
