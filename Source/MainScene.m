@@ -26,7 +26,7 @@ static const CGFloat scrollSpeed = 80.f;
 - (void)didLoadFromCCB {
     _physicsNode.collisionDelegate = self;
     [self loadSavedState];
-//    [self spawnFly];
+    [self spawnFly];
     _backgrounds = @[_background1, _background2];
 
 }
@@ -37,18 +37,18 @@ static const CGFloat scrollSpeed = 80.f;
     _physicsNode.position = ccp( _physicsNode.position.x,_physicsNode.position.y - (scrollSpeed *delta));
     
 
-
-    for (CCNode *background in _backgrounds) {
-        // get the world position of the ground
-        CGPoint backgroundWorldPosition = [_physicsNode convertToWorldSpace:background.position];
-        // get the screen position of the ground
-        CGPoint backgroundScreenPosition = [self convertToNodeSpace:backgroundWorldPosition];
-        // if the left corner is one complete width off the screen, move it to the right
-        if (backgroundScreenPosition.y >= (-1 * background.contentSize.height)) {
-            background.position = ccp(background.position.x, background.position.y - 2 * background.contentSize.height);
-            
-        }
-    }
+//
+//    for (CCNode *background in _backgrounds) {
+//        // get the world position of the ground
+//        CGPoint backgroundWorldPosition = [_physicsNode convertToWorldSpace:background.position];
+//        // get the screen position of the ground
+//        CGPoint backgroundScreenPosition = [self convertToNodeSpace:backgroundWorldPosition];
+//        // if the left corner is one complete width off the screen, move it to the right
+//        if (backgroundScreenPosition.y >= (-1 * background.contentSize.height)) {
+//            background.position = ccp(background.position.x, background.position.y - 2 * background.contentSize.height);
+//            
+//        }
+//    }
 }
 
 
