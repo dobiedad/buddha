@@ -3,7 +3,7 @@
 #import "Fly.h"
 #import "CCActionInterval.h"
 
-static const int kScrollSpeed = 3;
+static const CGFloat scrollSpeed = 80.f;
 
 @implementation MainScene {
     Hero *_hero;
@@ -18,6 +18,7 @@ static const int kScrollSpeed = 3;
     CCLabelTTF *_scoreLabel;
     int _highScore;
     CCLabelTTF *_highScoreLabel;
+    NSArray *_backgrounds;
 
 
 }
@@ -26,30 +27,27 @@ static const int kScrollSpeed = 3;
     _physicsNode.collisionDelegate = self;
     [self loadSavedState];
     [self spawnFly];
+    _backgrounds = @[_background1, _background2];
+
 }
 
 - (void)update:(CCTime)delta {
-//    //hero.position = ccp(hero.position.x + delta * scrollSpeed, hero.position.y);
-//    //_physicsNode.position = ccp(_physicsNode.position.x, _physicsNode.position.y  - (scrollSpeed *delta));
-//    
-//    CGPoint bg1Pos = _background1.position;
-//    CGPoint bg2Pos = _background2.position;
-//    bg1Pos.y += kScrollSpeed;
-//    bg2Pos.y -= kScrollSpeed;
-//    
-//    // move scrolling background back by one screen width to achieve "endless" scrolling
-//    if (bg1Pos.y < -(_background1.contentSize.width))
-//    {
-//        bg1Pos.y += _background1.contentSize.width;
-//        bg2Pos.y -= _background2.contentSize.width;
-//    }
-//    
-//    // remove any inaccuracies by assigning only int values
-//    // (prevents floating point rounding errors accumulating over time)
-//    bg1Pos.y = (int)bg1Pos.y;
-//    bg2Pos.y = (int)bg2Pos.y;
-//    _background1.position = bg1Pos;
-//    _background2.position = bg2Pos;
+    _hero.position = ccp( _hero.position.x,_hero.position.y + delta * scrollSpeed);
+
+    _physicsNode.position = ccp( _physicsNode.position.x,_physicsNode.position.y - (scrollSpeed *delta));
+    
+
+
+    for (CCNode *background in _backgrounds) {
+        // get the world position of the ground
+        CGPoint backgroundPosition = [_physicsNode convertToWorldSpace:background.position];
+        // get the screen position of the ground
+        CGPoint backgroundScreenPosition = [self convertToNodeSpace:backgroundPosition];
+        // if the left corner is one complete width off the screen, move it to the right
+        if (backgroundScreenPosition.y <= (-1 * background.contentSize.height)) {
+            background.position = ccp(background.position.y + 2 * background.contentSize.height, background.position.x);
+        }
+    }
 }
 
 
