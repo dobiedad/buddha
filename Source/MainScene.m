@@ -26,7 +26,7 @@ static const CGFloat scrollSpeed = 80.f;
 - (void)didLoadFromCCB {
     _physicsNode.collisionDelegate = self;
     [self loadSavedState];
-//    [self spawnFly];
+    [self spawnFly];
     _backgrounds = @[_background1, _background2];
 
 }
@@ -38,13 +38,12 @@ static const CGFloat scrollSpeed = 80.f;
         CGPoint backgroundWorldPosition = [_physicsNode convertToWorldSpace:background.position];
         CGPoint backgroundScreenPosition = [self convertToNodeSpace:backgroundWorldPosition];
         
+//        NSLog(@"%f", background.contentSize.height);
+        
         background.position = ccp(background.position.x, background.position.y + (scrollSpeed * delta));
         
         if (backgroundScreenPosition.y >= (background.contentSize.height)) {
-            background.position = ccp(background.position.x, background.position.y - 2 * background.contentSize.height);
-            
-        } else {
-//            background.position = ccp(background.position.x, background.position.y + (scrollSpeed * delta));
+            background.position = ccp(background.position.x, background.position.y - (2 * background.contentSize.height));
         }
     }
 }

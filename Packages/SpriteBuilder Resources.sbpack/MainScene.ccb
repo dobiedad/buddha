@@ -263,8 +263,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>-33</real>
-							<real>2</real>
+							<real>0.0</real>
+							<real>0.0</real>
 							<integer>1</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -349,8 +349,6 @@
 						<array/>
 					</dict>
 				</array>
-				<key>seqExpanded</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -384,8 +382,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>-34</real>
-							<real>-478</real>
+							<real>-2</real>
+							<real>-480</real>
 							<integer>1</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -409,8 +407,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1.2026015520095825</real>
-							<real>0.99855905771255493</real>
+							<real>1</real>
+							<real>1</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -423,7 +421,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>FlappyFlyArtPack/background.png</string>
+							<string>images/background.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -670,8 +668,6 @@
 								<string>budha.ccb</string>
 							</dict>
 						</array>
-						<key>seqExpanded</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -791,8 +787,6 @@
 								<string>fish1.ccb</string>
 							</dict>
 						</array>
-						<key>seqExpanded</key>
-						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
@@ -884,8 +878,6 @@
 						<real>0.5</real>
 					</dict>
 				</array>
-				<key>seqExpanded</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1077,8 +1069,6 @@
 						<array/>
 					</dict>
 				</array>
-				<key>seqExpanded</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1242,8 +1232,6 @@
 						<string>fish0.ccb</string>
 					</dict>
 				</array>
-				<key>seqExpanded</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
