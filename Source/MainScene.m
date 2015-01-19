@@ -33,7 +33,7 @@ static const CGFloat scrollSpeed = 80.f;
     _motionManager = [[CMMotionManager alloc] init];
     CGSize winSize = [CCDirector sharedDirector].viewSize;
     
-    CCAction *followHero = [CCActionFollow actionWithTarget:_hero worldBoundary:CGRectMake(0,0,_background1.contentSize.width,winSize.height)];
+    CCAction *followHero = [CCActionFollow actionWithTarget:_physicsNode worldBoundary:CGRectMake(0,0,_background1.contentSize.width,winSize.height)];
     [self runAction:followHero];
 
 
