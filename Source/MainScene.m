@@ -31,6 +31,10 @@ static const CGFloat scrollSpeed = 80.f;
     [self spawnFly];
     _backgrounds = @[_background1, _background2];
     _motionManager = [[CMMotionManager alloc] init];
+    CGSize winSize = [CCDirector sharedDirector].viewSize;
+    
+    CCAction *followHero = [CCActionFollow actionWithTarget:_hero worldBoundary:CGRectMake(0,0,_background1.contentSize.width,winSize.height)];
+    [self runAction:followHero];
 
 
 }
@@ -45,6 +49,14 @@ static const CGFloat scrollSpeed = 80.f;
     
     [_motionManager startAccelerometerUpdates];
 }
+- (void)update:(CCTime)delta {
+    
+    [self loopBackgrounds:delta];
+    
+    [self heroPositionAndAccelerometer:delta];
+}
+
+
 - (void)onExit
 {
     [super onExit];
@@ -64,21 +76,24 @@ static const CGFloat scrollSpeed = 80.f;
     }
 }
 
-- (void)update:(CCTime)delta {
-
-    [self loopBackgrounds:delta];
-    
+- (void)heroPositionAndAccelerometer:(CCTime)delta {
     CMAccelerometerData *accelerometerData = _motionManager.accelerometerData;
     CMAcceleration acceleration = accelerometerData.acceleration;
     
     CGSize winSize = [CCDirector sharedDirector].viewSize;
     
-    CGFloat newXPosition = _hero.position.x + acceleration.x * (1000 * delta);
+    CGFloat newXPosition = _physicsNode.position.x + acceleration.x * (1000 * delta);
     
-    newXPosition = clampf(newXPosition, 0, winSize.width);
+    newXPosition = clampf(newXPosition,  _background1.position.x, _background1.position.x + _background1.contentSize.width);
     
-    _hero.position = CGPointMake(newXPosition, _hero.position.y);
+    _physicsNode.position = CGPointMake(newXPosition, _physicsNode.position.y);
+//    _physicsNode.position = _hero.position;
+    
+    
+
 }
+
+
 
 
 - (void)scaleHeartAnimation {
