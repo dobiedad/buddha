@@ -2,6 +2,7 @@
 #import "Hero.h"
 #import "Fly.h"
 #import "CCActionInterval.h"
+#import <CoreMotion/CoreMotion.h>
 
 static const CGFloat scrollSpeed = 80.f;
 
@@ -19,6 +20,7 @@ static const CGFloat scrollSpeed = 80.f;
     int _highScore;
     CCLabelTTF *_highScoreLabel;
     NSArray *_backgrounds;
+    CMMotionManager *_motionManager;
 
 
 }
@@ -28,24 +30,54 @@ static const CGFloat scrollSpeed = 80.f;
     [self loadSavedState];
     [self spawnFly];
     _backgrounds = @[_background1, _background2];
+    _motionManager = [[CMMotionManager alloc] init];
+
 
 }
+- (void)onEnter
+{
+    [super onEnter];
+    
+    CGSize winSize = [CCDirector sharedDirector].viewSize;
+    CGPoint midpoint = ccp(winSize.width/2, winSize.height/2);
+    
+    _hero.position = midpoint;
+    
+    [_motionManager startAccelerometerUpdates];
+}
+- (void)onExit
+{
+    [super onExit];
+    [_motionManager stopAccelerometerUpdates];
+}
 
-- (void)update:(CCTime)delta {
-
+- (void)loopBackgrounds:(CCTime)delta {
     for (CCNode *background in _backgrounds) {
-
+        
         CGPoint backgroundWorldPosition = [_physicsNode convertToWorldSpace:background.position];
         CGPoint backgroundScreenPosition = [self convertToNodeSpace:backgroundWorldPosition];
-        
-//        NSLog(@"%f", background.contentSize.height);
-        
         background.position = ccp(background.position.x, background.position.y + (scrollSpeed * delta));
         
         if (backgroundScreenPosition.y >= (background.contentSize.height)) {
             background.position = ccp(background.position.x, background.position.y - (2 * background.contentSize.height));
         }
     }
+}
+
+- (void)update:(CCTime)delta {
+
+    [self loopBackgrounds:delta];
+    
+    CMAccelerometerData *accelerometerData = _motionManager.accelerometerData;
+    CMAcceleration acceleration = accelerometerData.acceleration;
+    
+    CGSize winSize = [CCDirector sharedDirector].viewSize;
+    
+    CGFloat newXPosition = _hero.position.x + acceleration.x * (1000 * delta);
+    
+    newXPosition = clampf(newXPosition, 0, winSize.width);
+    
+    _hero.position = CGPointMake(newXPosition, _hero.position.y);
 }
 
 
