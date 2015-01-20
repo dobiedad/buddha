@@ -33,7 +33,7 @@ static const CGFloat scrollSpeed = 80.f;
     _motionManager = [[CMMotionManager alloc] init];
     CGSize winSize = [CCDirector sharedDirector].viewSize;
     
-    CCAction *followHero = [CCActionFollow actionWithTarget:_physicsNode worldBoundary:CGRectMake(0,0,_background1.contentSize.width,winSize.height)];
+    CCAction *followHero = [CCActionFollow actionWithTarget:_physicsNode worldBoundary:CGRectMake(_background1.position.x - _hero.contentSize.width,0,_background1.contentSize.width ,   winSize.height )];
     [self runAction:followHero];
 
 
@@ -84,9 +84,11 @@ static const CGFloat scrollSpeed = 80.f;
     
     CGFloat newXPosition = _physicsNode.position.x + acceleration.x * (1000 * delta);
     
-    newXPosition = clampf(newXPosition,  _background1.position.x, _background1.position.x + _background1.contentSize.width);
+    newXPosition = clampf(newXPosition,  _background1.position.x , _background1.position.x + (_background1.contentSize.width * .85) );
     
     _physicsNode.position = CGPointMake(newXPosition, _physicsNode.position.y);
+    _hero.position = CGPointMake(winSize.width/2, winSize.height/2);
+
 //    _physicsNode.position = _hero.position;
     
     

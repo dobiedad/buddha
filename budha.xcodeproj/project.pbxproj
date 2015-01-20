@@ -70,6 +70,7 @@
 		B3057AEB1A6AA714004B93CC /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B3057AEA1A6AA714004B93CC /* MainMenuScene.m */; };
 		B30B9B081A6876B300FAF425 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B30B9B071A6876B300FAF425 /* GameOverScene.m */; };
 		B3170CFF1A63FBDA0008C96E /* Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = B3170CFE1A63FBDA0008C96E /* Hero.m */; };
+		B3C390431A6DA5FA0086CA15 /* libDetective.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C390421A6DA5FA0086CA15 /* libDetective.a */; };
 		B3EEDF781A66CEF70036269D /* Fly.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EEDF771A66CEF70036269D /* Fly.m */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
 		B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5908188484E7003F4D28 /* iPad-old@2x.png */; };
@@ -207,6 +208,7 @@
 		B30B9B071A6876B300FAF425 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		B3170CFD1A63FBDA0008C96E /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
 		B3170CFE1A63FBDA0008C96E /* Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hero.m; sourceTree = "<group>"; };
+		B3C390421A6DA5FA0086CA15 /* libDetective.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDetective.a; sourceTree = "<group>"; };
 		B3EEDF761A66CEF70036269D /* Fly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fly.h; sourceTree = "<group>"; };
 		B3EEDF771A66CEF70036269D /* Fly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fly.m; sourceTree = "<group>"; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				B77F1B3617B978D7009739AE /* OpenAL.framework in Frameworks */,
 				B77F1B3817B978D7009739AE /* AudioToolbox.framework in Frameworks */,
 				B77F1B3A17B978D7009739AE /* AVFoundation.framework in Frameworks */,
+				B3C390431A6DA5FA0086CA15 /* libDetective.a in Frameworks */,
 				B77F1B3C17B978D7009739AE /* UIKit.framework in Frameworks */,
 				B77F1B3E17B978D7009739AE /* Foundation.framework in Frameworks */,
 				B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */,
@@ -514,6 +517,7 @@
 		B77F1B2517B978D7009739AE = {
 			isa = PBXGroup;
 			children = (
+				B3C390421A6DA5FA0086CA15 /* libDetective.a */,
 				B737893C1807616C0076A88C /* Source */,
 				B77F1B4617B978D7009739AE /* Resources */,
 				9222E2B918734FF800A246C7 /* libs */,
@@ -1274,6 +1278,10 @@
 				INFOPLIST_FILE = Source/Resources/Platforms/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -1308,6 +1316,10 @@
 				INFOPLIST_FILE = Source/Resources/Platforms/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
