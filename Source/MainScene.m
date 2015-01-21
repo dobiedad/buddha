@@ -33,27 +33,32 @@ static const CGFloat scrollSpeed = 80.f;
     _motionManager = [[CMMotionManager alloc] init];
     CGSize winSize = [CCDirector sharedDirector].viewSize;
     
-    CCAction *followHero = [CCActionFollow actionWithTarget:_physicsNode worldBoundary:CGRectMake(_background1.position.x - _hero.contentSize.width,0,_background1.contentSize.width ,   winSize.height )];
+    CCAction *followHero = [CCActionFollow actionWithTarget:_hero worldBoundary:CGRectMake(_background1.position.x - _hero.contentSize.width,0,_background1.contentSize.width ,   winSize.height )];
     [self runAction:followHero];
-
+    self.userInteractionEnabled = YES;
 
 }
+-(void) touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event
+{
+   
+    CGPoint location = [touch locationInNode:self];
+    location = [[CCDirector sharedDirector] convertToGL:location];
+    _hero.position = location;
+  
+}
+
 - (void)onEnter
 {
     [super onEnter];
     
-    CGSize winSize = [CCDirector sharedDirector].viewSize;
-    CGPoint midpoint = ccp(winSize.width/2, winSize.height/2);
-    
-    _hero.position = midpoint;
-    
+   
     [_motionManager startAccelerometerUpdates];
 }
 - (void)update:(CCTime)delta {
     
     [self loopBackgrounds:delta];
     
-    [self heroPositionAndAccelerometer:delta];
+//    [self heroPositionAndAccelerometer:delta];
 }
 
 
@@ -94,6 +99,8 @@ static const CGFloat scrollSpeed = 80.f;
     
 
 }
+
+
 
 
 
