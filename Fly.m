@@ -22,14 +22,14 @@
     CGFloat middleX = (screenWidth / 2);
     int plusMinusRandom = [self randomNumberBetweenZeroAnd: 1] == 0 ? 1 : -1;
     
-    NSLog(@"plusMinusRandom = %d", plusMinusRandom);
+//    NSLog(@"plusMinusRandom = %d", plusMinusRandom);
     
     CGFloat xDistanceFromMiddle = (middleX + 100) * plusMinusRandom;
     
     int startX = middleX + xDistanceFromMiddle;
     int endX = middleX - xDistanceFromMiddle;
     
-    NSLog(@"%d -> %d", startX, endX);
+//    NSLog(@"%d -> %d", startX, endX);
     
     int endY = 100 + ([self randomNumberBetweenZeroAnd: 900])*plusMinusRandom + ([self randomNumberBetweenZeroAnd: 100]);
     int startY = 100 + ([self randomNumberBetweenZeroAnd: 600]);
@@ -77,7 +77,7 @@
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    CCLOG(@"Fly touched");
+//    CCLOG(@"Fly touched");
     [self addParticles];
     [self.spriteDiedDelegate spriteDied: self];
 

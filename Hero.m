@@ -23,7 +23,7 @@
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    CCLOG(@"Buddha touched");
+//    CCLOG(@"Buddha touched");
 }
 
 
