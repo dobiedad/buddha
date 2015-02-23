@@ -493,8 +493,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>246.74588012695312</real>
-									<real>260.79525756835938</real>
+									<real>163.74588012695312</real>
+									<real>194.79525756835938</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -522,6 +522,8 @@
 								<string>budha.ccb</string>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
