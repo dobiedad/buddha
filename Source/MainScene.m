@@ -43,36 +43,7 @@ static const CGFloat heroSpeed = 30.f;
     self.userInteractionEnabled = YES;
 
 }
--(void) touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event
-{
-   
-    CGPoint location = [self convertToNodeSpace:touch.locationInWorld];
-    NSLog(@"location X: %f", location.x);
-    NSLog(@"location Y: %f", location.y);
-    
-    [touchQueue insertObject:[NSValue valueWithCGPoint:location] atIndex:0];
-    [self continueHeroMovement];
 
-}
--(void)continueHeroMovement {
-    
-    if(touchQueue.count < 1 || [_hero getActionByTag:kHeroMoveTag]) {
-        return; //dont do anything
-    }
-    
-    NSValue *valueOfPt = [touchQueue lastObject];
-    [touchQueue removeLastObject];
-    CGPoint newPt = [valueOfPt CGPointValue];
-    float distance = ccpDistance(_hero.position, newPt);
-    float duration = distance / heroSpeed; //you must define boatSpeed somewhere
-    
-    CCActionMoveTo *move = [CCActionMoveTo actionWithDuration:duration position:newPt];
-    
-    CCActionSequence *moveSeq = [CCActionSequence actionOne:move two:[CCActionCallFunc actionWithTarget:self selector:@selector(continueHeroMovement)]];
-    moveSeq.tag = kHeroMoveTag;
-
-    [_hero  runAction:moveSeq];
-}
 - (void)onEnter
 {
     [super onEnter];
@@ -82,8 +53,7 @@ static const CGFloat heroSpeed = 30.f;
 }
 - (void)update:(CCTime)delta {
     [self loopBackgrounds:delta];
-//    [self heroPositon];
-//    [self heroPositionAndAccelerometer:delta];
+    [self heroPositionAndAccelerometer:delta];
 }
 
 
@@ -106,6 +76,24 @@ static const CGFloat heroSpeed = 30.f;
     }
 }
 
+- (void)heroPositionAndAccelerometer:(CCTime)delta {
+    CMAccelerometerData *accelerometerData = _motionManager.accelerometerData;
+    CMAcceleration acceleration = accelerometerData.acceleration;
+    
+    CGSize winSize = [CCDirector sharedDirector].viewSize;
+    
+    CGFloat newXPosition = _physicsNode.position.x + acceleration.x * (1000 * delta);
+    
+    newXPosition = clampf(newXPosition,  _background1.position.x , _background1.position.x + (_background1.contentSize.width * .85) );
+    
+    _physicsNode.position = CGPointMake(newXPosition, _physicsNode.position.y);
+    _hero.position = CGPointMake(winSize.width/2, winSize.height/2);
+    
+    //    _physicsNode.position = _hero.position;
+    
+    
+    
+}
 
 
 
