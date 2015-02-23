@@ -88,10 +88,12 @@ static const CGFloat heroSpeed = 30.f;
     
     CGFloat newXPosition = _physicsNode.position.x + acceleration.x * (1000 * delta);
     
-    newXPosition = clampf(newXPosition,  _background1.position.x , _background1.position.x + ((_background1.contentSize.width - _hero.contentSize.width)* .5 ) );
+    newXPosition = clampf(newXPosition,  _background1.position.x , _background1.position.x + ((_background1.contentSize.width - _hero.contentSize.width)* .8 ) );
     
     _physicsNode.position = CGPointMake(newXPosition, _physicsNode.position.y);
     _hero.position = CGPointMake(newXPosition, _hero.position.y);
+    NSLog(@"Background WIDTH >>> %f",_background1.contentSize.width);
+
     NSLog(@"Background POS >>> %f",_background1.position.x);
     NSLog(@"HERO POS >>> %f",_hero.position.x);
     NSLog(@"Physics POS >>> %f",_physicsNode.position.x);
