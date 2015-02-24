@@ -17,6 +17,7 @@ static const CGFloat heroSpeed = 30.f;
     CCNode *_background2;
     CCNode *_heart;
     CCNode *_healthBar;
+    CCNode *_heroStatsNode;
     NSMutableArray *_flies;
     int _points;
     CCLabelTTF *_scoreLabel;
@@ -39,9 +40,6 @@ static const CGFloat heroSpeed = 30.f;
     CGSize winSize = [CCDirector sharedDirector].viewSize;
     CGRect worldBoundary =CGRectMake(_background1.position.x,0,_background1.contentSize.width - _hero.contentSize.width ,  winSize.height );
     
-    
-    
-    
     CCAction *followHero = [CCActionFollow actionWithTarget:_hero worldBoundary:worldBoundary];
     [self runAction:followHero];
     self.userInteractionEnabled = YES;
@@ -58,6 +56,8 @@ static const CGFloat heroSpeed = 30.f;
 - (void)update:(CCTime)delta {
     [self loopBackgrounds:delta];
     [self heroPositionAndAccelerometer:delta];
+    _heroStatsNode.positionInPoints=CGPointMake(-150.f, -20.f);
+
 }
 
 
@@ -92,6 +92,8 @@ static const CGFloat heroSpeed = 30.f;
     
     _physicsNode.position = CGPointMake(newXPosition, _physicsNode.position.y);
     _hero.position = CGPointMake(newXPosition, _hero.position.y);
+    
+    
     NSLog(@"Background WIDTH >>> %f",_background1.contentSize.width);
 
     NSLog(@"Background POS >>> %f",_background1.position.x);
