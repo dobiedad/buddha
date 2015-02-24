@@ -18,7 +18,7 @@
 - (void)randomFlyPosition {
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenWidth = screenRect.size.width * 3;
     CGFloat middleX = (screenWidth / 2);
     int plusMinusRandom = [self randomNumberBetweenZeroAnd: 1] == 0 ? 1 : -1;
     
