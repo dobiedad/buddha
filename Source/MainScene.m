@@ -38,9 +38,9 @@ static const CGFloat heroSpeed = 30.f;
     _backgrounds = @[_background1, _background2];
     _motionManager = [[CMMotionManager alloc] init];
     CGSize winSize = [CCDirector sharedDirector].viewSize;
-    CGRect worldBoundary =CGRectMake(_background1.position.x,0,_background1.contentSize.width - _hero.contentSize.width ,  winSize.height );
+    CGRect worldBoundary =CGRectMake(_background1.position.x,0,_background1.contentSize.width ,  winSize.height );
     
-    CCAction *followHero = [CCActionFollow actionWithTarget:_hero worldBoundary:worldBoundary];
+    CCAction *followHero = [CCActionFollow actionWithTarget:_physicsNode worldBoundary:worldBoundary];
     [self runAction:followHero];
     self.userInteractionEnabled = YES;
 
@@ -88,10 +88,10 @@ static const CGFloat heroSpeed = 30.f;
     
     CGFloat newXPosition = _physicsNode.position.x + acceleration.x * (1000 * delta);
     
-    newXPosition = clampf(newXPosition,  _background1.position.x *.4 , _background1.position.x + ((_background1.contentSize.width - _hero.contentSize.width)* .5 ) );
+    newXPosition = clampf(newXPosition,  _background1.position.x *.4 , _background1.position.x + ((_background1.contentSize.width - _hero.contentSize.width)* .55 ) );
     
     _physicsNode.position = CGPointMake(newXPosition, _physicsNode.position.y);
-    _hero.position = CGPointMake(newXPosition, _hero.position.y);
+    _hero.position = CGPointMake(winSize.width/100, _hero.position.y);
     
     
     NSLog(@"Background WIDTH >>> %f",_background1.contentSize.width);
