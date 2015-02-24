@@ -70,6 +70,7 @@
 		B3057AEB1A6AA714004B93CC /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B3057AEA1A6AA714004B93CC /* MainMenuScene.m */; };
 		B30B9B081A6876B300FAF425 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B30B9B071A6876B300FAF425 /* GameOverScene.m */; };
 		B3170CFF1A63FBDA0008C96E /* Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = B3170CFE1A63FBDA0008C96E /* Hero.m */; };
+		B33444051A9CC6D700EB7125 /* Boulder.m in Sources */ = {isa = PBXBuildFile; fileRef = B33444041A9CC6D700EB7125 /* Boulder.m */; };
 		B3C390431A6DA5FA0086CA15 /* libDetective.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C390421A6DA5FA0086CA15 /* libDetective.a */; };
 		B3EEDF781A66CEF70036269D /* Fly.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EEDF771A66CEF70036269D /* Fly.m */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
@@ -208,6 +209,8 @@
 		B30B9B071A6876B300FAF425 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		B3170CFD1A63FBDA0008C96E /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
 		B3170CFE1A63FBDA0008C96E /* Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hero.m; sourceTree = "<group>"; };
+		B33444031A9CC6D700EB7125 /* Boulder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Boulder.h; sourceTree = "<group>"; };
+		B33444041A9CC6D700EB7125 /* Boulder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Boulder.m; sourceTree = "<group>"; };
 		B3C390421A6DA5FA0086CA15 /* libDetective.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDetective.a; sourceTree = "<group>"; };
 		B3EEDF761A66CEF70036269D /* Fly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fly.h; sourceTree = "<group>"; };
 		B3EEDF771A66CEF70036269D /* Fly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fly.m; sourceTree = "<group>"; };
@@ -517,6 +520,8 @@
 		B77F1B2517B978D7009739AE = {
 			isa = PBXGroup;
 			children = (
+				B33444031A9CC6D700EB7125 /* Boulder.h */,
+				B33444041A9CC6D700EB7125 /* Boulder.m */,
 				B3C390421A6DA5FA0086CA15 /* libDetective.a */,
 				B737893C1807616C0076A88C /* Source */,
 				B77F1B4617B978D7009739AE /* Resources */,
@@ -893,6 +898,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B73789871807631A0076A88C /* main.m in Sources */,
+				B33444051A9CC6D700EB7125 /* Boulder.m in Sources */,
 				7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */,
 				B3EEDF781A66CEF70036269D /* Fly.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,

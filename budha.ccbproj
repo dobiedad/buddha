@@ -81,6 +81,11 @@
 			<key>previewFolderHidden</key>
 			<true/>
 		</dict>
+		<key>FlappyFlyArtPack/ground.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>4</integer>
+		</dict>
 		<key>Sprites</key>
 		<dict/>
 		<key>ccbResources</key>

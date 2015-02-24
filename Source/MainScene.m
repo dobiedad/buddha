@@ -1,11 +1,20 @@
 #import "MainScene.h"
 #import "Hero.h"
 #import "Fly.h"
+#import "Boulder.h"
 #import "CCActionInterval.h"
 #import <CoreMotion/CoreMotion.h>
 
 static const CGFloat scrollSpeed = 80.f;
 static const CGFloat heroSpeed = 30.f;
+
+static const CGFloat firstObstaclePosition = 280.f;
+static const CGFloat distanceBetweenBoulders = 160.f;
+
+typedef NS_ENUM(NSInteger, DrawingOrder) {
+    DrawingOrderBoulders,
+    DrawingOrderHero
+};
 
 #define kHeroMoveTag 123
 
@@ -26,10 +35,13 @@ static const CGFloat heroSpeed = 30.f;
     NSArray *_backgrounds;
     CMMotionManager *_motionManager;
     NSMutableArray *touchQueue;
-
+    NSMutableArray *_boulderArray;
+  
 
 
 }
+
+
 
 - (void)didLoadFromCCB {
     _physicsNode.collisionDelegate = self;
@@ -37,13 +49,58 @@ static const CGFloat heroSpeed = 30.f;
     [self spawnFly];
     _backgrounds = @[_background1, _background2];
     _motionManager = [[CMMotionManager alloc] init];
+    _boulderArray = [[NSMutableArray alloc]init];
+   
+    
     CGSize winSize = [CCDirector sharedDirector].viewSize;
-    CGRect worldBoundary =CGRectMake(_background1.position.x,0,_background1.contentSize.width ,  winSize.height );
+    CGRect worldBoundary =CGRectMake(_background1.position.x,0,_background1.contentSize.width -     _background1.position.x ,  winSize.height );
     
     CCAction *followHero = [CCActionFollow actionWithTarget:_physicsNode worldBoundary:worldBoundary];
     [self runAction:followHero];
     self.userInteractionEnabled = YES;
+    
+    for (CCNode *boulder in _boulderArray) {
+        boulder.zOrder = DrawingOrderBoulders;
+    }
+    _hero.zOrder = DrawingOrderHero;
+}
 
+- (void)spawnNewObstacle {
+    CCNode *previousObstacle = [_boulderArray lastObject];
+    CGFloat previousBoulderXPosition = previousObstacle.position.x;
+    if (!previousObstacle) {
+        // this is the first obstacle
+        previousBoulderXPosition = firstObstaclePosition;
+    }
+    CCNode *boulder = [CCBReader load:@"Boulder"];
+    
+    boulder.position = ccp(previousBoulderXPosition + distanceBetweenBoulders, 0);
+    NSLog(@"boulder  PoSX >>> %f", boulder.position.x);
+    NSLog(@"boulder PoSY >>> %f", boulder.position.y);
+    [_physicsNode addChild:boulder];
+    [_boulderArray addObject:boulder];
+}
+- (void)offScreenBoulders{
+    NSMutableArray *offScreenBoulders = nil;
+    
+    for (CCNode *boulder in _boulderArray) {
+        CGPoint boulderWorldPosition = [_physicsNode convertToWorldSpace:boulder.position];
+        CGPoint boulderScreenPosition = [self convertToNodeSpace:boulderWorldPosition];
+        
+  
+        if (boulderScreenPosition.x < -boulder.contentSize.width) {
+            if (!offScreenBoulders) {
+                offScreenBoulders = [NSMutableArray array];
+            }
+            [offScreenBoulders addObject:boulder];
+        }
+    }
+    for (CCNode *boulderToRemove in offScreenBoulders) {
+        [boulderToRemove removeFromParent];
+        [_boulderArray removeObject:boulderToRemove];
+        // for each removed obstacle, add a new one
+        [self spawnNewObstacle];
+    }
 }
 
 - (void)onEnter
@@ -57,6 +114,8 @@ static const CGFloat heroSpeed = 30.f;
     [self loopBackgrounds:delta];
     [self heroPositionAndAccelerometer:delta];
     _heroStatsNode.positionInPoints=CGPointMake(-150.f, -20.f);
+//    [self addBoulderToRoad];
+    [self spawnNewObstacle];
 
 }
 
@@ -93,12 +152,12 @@ static const CGFloat heroSpeed = 30.f;
     _physicsNode.position = CGPointMake(newXPosition, _physicsNode.position.y);
     _hero.position = CGPointMake(winSize.width/100, _hero.position.y);
     
-    
-    NSLog(@"Background WIDTH >>> %f",_background1.contentSize.width);
-
-    NSLog(@"Background POS >>> %f",_background1.position.x);
-    NSLog(@"HERO POS >>> %f",_hero.position.x);
-    NSLog(@"Physics POS >>> %f",_physicsNode.position.x);
+//    
+//    NSLog(@"Background WIDTH >>> %f",_background1.contentSize.width);
+//
+//    NSLog(@"Background POS >>> %f",_background1.position.x);
+//    NSLog(@"HERO POS >>> %f",_hero.position.x);
+//    NSLog(@"Physics POS >>> %f",_physicsNode.position.x);
 
     //    _physicsNode.position = _hero.position;
     
@@ -148,6 +207,50 @@ static const CGFloat heroSpeed = 30.f;
     Fly *fly =  (Fly *)[CCBReader load:flyFile];
     fly.spriteDiedDelegate = self;
     [_physicsNode addChild:fly];
+}
+- (NSInteger)randomNumberBetweenZeroAnd: (u_int32_t) n {
+    return arc4random_uniform(n + 1);
+}
+
+-(void) populateRandomBoulder
+{
+    for(int i=1;i<=4;i++)
+    {
+        int randomNumber = [self randomNumberBetweenZeroAnd: 10];
+        
+        if(randomNumber == 0)
+        {
+            Boulder *boulder = (Boulder *)[CCBReader load:@"boulder"];
+            [_boulderArray addObject:boulder];
+
+        }
+    }
+    
+}
+-(void) addBoulderToRoad
+{
+    // clean the array
+    [_boulderArray removeAllObjects];
+    _boulderArray= nil;
+    
+    _boulderArray = [[NSMutableArray alloc] init];
+    CGSize winSize = [CCDirector sharedDirector].viewSize;
+
+    [self populateRandomBoulder];
+    long y = 200;
+    long x = 0;
+    
+    for(long i=0;i<[_boulderArray count]; i++)
+    {
+        x  = [self randomNumberBetweenZeroAnd: winSize.width/2];
+        
+        Boulder *boulder = [_boulderArray objectAtIndex:i];
+        
+        [self addChild:boulder z:0];
+        
+        y += 200;
+    }
+    
 }
 
 - (void)scoreAndHighScore

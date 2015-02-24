@@ -15,6 +15,7 @@
     
 }
 
+
 - (void)randomFlyPosition {
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
