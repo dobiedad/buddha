@@ -88,7 +88,7 @@ static const CGFloat heroSpeed = 30.f;
     
     CGFloat newXPosition = _physicsNode.position.x + acceleration.x * (1000 * delta);
     
-    newXPosition = clampf(newXPosition,  _background1.position.x , _background1.position.x + ((_background1.contentSize.width - _hero.contentSize.width)* .8 ) );
+    newXPosition = clampf(newXPosition,  _background1.position.x *.4 , _background1.position.x + ((_background1.contentSize.width - _hero.contentSize.width)* .5 ) );
     
     _physicsNode.position = CGPointMake(newXPosition, _physicsNode.position.y);
     _hero.position = CGPointMake(newXPosition, _hero.position.y);
