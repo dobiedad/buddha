@@ -31,8 +31,8 @@ static const CGFloat maximumYPositionTopPipe = maximumYPositionBottomPipe - pipe
     // value between 0.f and 1.f
     CGFloat random = ((double)arc4random() / ARC4RANDOM_MAX);
     CGFloat range = maximumYPositionTopPipe - minimumYPositionTopPipe;
-    _boulder1.position = ccp( minimumYPositionTopPipe + (random * range),_boulder1.position.x);
-    _boulder2.position = ccp( _boulder1.position.y + pipeDistance,_boulder2.position.x);
+    _boulder1.position = ccp(_boulder1.position.x, minimumYPositionTopPipe + (random * range));
+    _boulder2.position = ccp(_boulder2.position.x, _boulder1.position.y + pipeDistance);
     
 
 

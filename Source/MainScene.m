@@ -63,21 +63,30 @@ typedef NS_ENUM(NSInteger, DrawingOrder) {
         boulder.zOrder = DrawingOrderBoulders;
     }
     _hero.zOrder = DrawingOrderHero;
+    
+    [self spawnNewObstacle];
+
+    
 }
 
 - (void)spawnNewObstacle {
     CCNode *previousObstacle = [_boulderArray lastObject];
     CGFloat previousBoulderXPosition = previousObstacle.position.x;
+    CGSize winSize = [CCDirector sharedDirector].viewSize;
+
+    int randomWinSize = [self randomNumberBetweenZeroAnd: winSize.width];
+
+    
     if (!previousObstacle) {
         // this is the first obstacle
         previousBoulderXPosition = firstObstaclePosition;
     }
     CCNode *boulder = [CCBReader load:@"Boulder"];
     
-    boulder.position = ccp(previousBoulderXPosition + distanceBetweenBoulders, 0);
+    boulder.position = ccp( 0 + randomWinSize ,previousBoulderXPosition + distanceBetweenBoulders);
     NSLog(@"boulder  PoSX >>> %f", boulder.position.x);
     NSLog(@"boulder PoSY >>> %f", boulder.position.y);
-    [_physicsNode addChild:boulder];
+    [_background1 addChild:boulder];
     [_boulderArray addObject:boulder];
 }
 - (void)offScreenBoulders{
@@ -88,7 +97,7 @@ typedef NS_ENUM(NSInteger, DrawingOrder) {
         CGPoint boulderScreenPosition = [self convertToNodeSpace:boulderWorldPosition];
         
   
-        if (boulderScreenPosition.x < -boulder.contentSize.width) {
+        if (boulderScreenPosition.y < -boulder.contentSize.width) {
             if (!offScreenBoulders) {
                 offScreenBoulders = [NSMutableArray array];
             }
@@ -100,6 +109,11 @@ typedef NS_ENUM(NSInteger, DrawingOrder) {
         [_boulderArray removeObject:boulderToRemove];
         // for each removed obstacle, add a new one
         [self spawnNewObstacle];
+        [self spawnNewObstacle];
+
+        [self spawnNewObstacle];
+        [self spawnNewObstacle];
+
     }
 }
 
@@ -115,7 +129,7 @@ typedef NS_ENUM(NSInteger, DrawingOrder) {
     [self heroPositionAndAccelerometer:delta];
     _heroStatsNode.positionInPoints=CGPointMake(-150.f, -20.f);
 //    [self addBoulderToRoad];
-    [self spawnNewObstacle];
+    [self offScreenBoulders];
 
 }
 
